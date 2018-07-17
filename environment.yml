@@ -3,6 +3,11 @@ channels:
   - QuantStack
   - conda-forge
 dependencies:
+# Required to produce output
+  - pyyaml
+  - jinja2
+# For python language examples
   - python
   - numpy
+# For C++ language examples
   - xeus-cling
