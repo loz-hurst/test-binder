@@ -2,13 +2,13 @@
 {%- if var is mapping %}
 {
 {%- for key, value in var.items() %}
-"{{ key }}": {{ dump_var(value) | indent(2) }},
+"{{ key }}": {{ dump_var(value) | indent(2) }}{% if not loop.last %},{% endif %}
 {%- endfor %}
 }
 {%- elif var is iterable and var is not string -%}
 [
 {%- for val in var %}
-{{ dump_var(val) | indent(2) }},
+{{ dump_var(val) | indent(2) }}{% if not loop.last %},{% endif %}
 {%- endfor %}
 ]
 {%- elif var is number -%}
