@@ -1,9 +1,23 @@
-{% macro dump_var(var) %}
-{% for key, value in var.items() %}
-"{{ key }}": "{{ value }}"
-{% endfor %}
+{% macro dump_var(var) -%}
+{%- if var is mapping %}
+{
+{%- for key, value in var.items() %}
+"{{ key }}": {{ dump_var(value) | indent(2) }},
+{%- endfor %}
+}
+{%- elif var is iterable and var is not string -%}
+[
+{%- for val in var %}
+{{ dump_var(val) | indent(2) }},
+{%- endfor %}
+]
+{%- elif var is number -%}
+{{ var }}
+{%- else -%}
+"{{ var }}"
+{%- endif -%}
+{%- endmacro %}
 
-{% endmacro %}
 {
  "cells": [
   {
@@ -11,33 +25,10 @@
    "execution_count": null,
    "metadata": {},
    "outputs": [],
-   "source": [
-    "import numpy as np\n",
-    "\n",
-    "print(np.random.random())"
-   ]
+   "source": {{ dump_var(examples['first'].replace("\"", "\\\"").replace("\n", "\\n\n").split("\n")) }}
   }
  ],
- "metadata": {
- {{ dump_var(meta) }}
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.7.0"
-  }
- },
+ "metadata": {{ dump_var(meta) | indent(2) }},
  "nbformat": 4,
  "nbformat_minor": 2
 }

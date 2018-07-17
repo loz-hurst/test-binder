@@ -5,7 +5,7 @@ meta:
     name: python3
   language_info:
     codemirror_mode:
-      name: python
+      name: ipython
       version: 3
     file_extension: .py
     mimetype: text/x-python
