@@ -11,8 +11,8 @@ meta:
     version: -std=c++17
 examples:
   first: |
+    int i = 10;
+  second: |
     #include <iostream>
 
-    int i = 10;
-
-    std::cout << "Hello world!" << std::endl << "i is: " << i << std::endl;
+    std::cout << "Hello world!" << std::endl;

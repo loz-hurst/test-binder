@@ -21,11 +21,36 @@
 {
  "cells": [
   {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Variables\n",
+    "\n",
+    "Some introduction to defining variables"
+   ]
+  },
+  {
    "cell_type": "code",
    "execution_count": null,
    "metadata": {},
    "outputs": [],
    "source": {{ dump_var(examples['first'].replace("\"", "\\\"").replace("\n", "\\n\n").split("\n")) }}
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Output\n",
+    "\n",
+    "And this is how we do hello world..."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": {{ dump_var(examples['second'].replace("\"", "\\\"").replace("\n", "\\n\n").split("\n")) }}
   }
  ],
  "metadata": {{ dump_var(meta) | indent(2) }},
